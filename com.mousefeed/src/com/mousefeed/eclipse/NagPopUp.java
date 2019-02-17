@@ -35,6 +35,8 @@ import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.FocusAdapter;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.graphics.Font;
@@ -304,6 +306,12 @@ public class NagPopUp extends PopupDialog {
         link.addFocusListener(new FocusAdapter() {
             @Override
             public void focusGained(final FocusEvent e) {
+                doLinkActivated();
+            }
+        });
+        link.addDisposeListener(new DisposeListener() {
+            @Override
+            public void widgetDisposed(DisposeEvent e) {
                 doLinkActivated();
             }
         });
